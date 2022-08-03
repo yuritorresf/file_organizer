@@ -10,19 +10,19 @@
     <x>0</x>
     <y>0</y>
     <width>780</width>
-    <height>472</height>
+    <height>470</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>780</width>
-    <height>280</height>
+    <height>470</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>780</width>
-    <height>2800</height>
+    <height>470</height>
    </size>
   </property>
   <property name="font">
@@ -53,17 +53,50 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>9</y>
+      <y>10</y>
       <width>761</width>
-      <height>451</height>
+      <height>454</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
      <property name="sizeConstraint">
-      <enum>QLayout::SetMinAndMaxSize</enum>
+      <enum>QLayout::SetMaximumSize</enum>
      </property>
-     <item row="2" column="0">
+     <property name="leftMargin">
+      <number>16</number>
+     </property>
+     <property name="topMargin">
+      <number>8</number>
+     </property>
+     <property name="rightMargin">
+      <number>16</number>
+     </property>
+     <property name="bottomMargin">
+      <number>8</number>
+     </property>
+     <property name="spacing">
+      <number>16</number>
+     </property>
+     <item row="1" column="0">
       <widget class="QLineEdit" name="input_text">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>640</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>10</pointsize>
@@ -71,6 +104,10 @@
        </property>
        <property name="accessibleName">
         <string>input_text</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">width: calc(100% - 16px);
+padding: 0 8px;</string>
        </property>
        <property name="text">
         <string/>
@@ -82,12 +119,18 @@
         <bool>true</bool>
        </property>
        <property name="placeholderText">
-        <string>Selecione a pasta</string>
+        <string>Selecionar pasta</string>
        </property>
       </widget>
      </item>
      <item row="0" column="0" colspan="2">
       <widget class="QLabel" name="label">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>64</height>
+        </size>
+       </property>
        <property name="text">
         <string>Organizador de Ficheiros</string>
        </property>
@@ -96,54 +139,52 @@
        </property>
       </widget>
      </item>
-     <item row="1" column="0" colspan="2">
-      <spacer name="verticalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
+     <item row="2" column="0" colspan="2">
+      <widget class="QTextBrowser" name="list_filesfolders">
+       <property name="minimumSize">
         <size>
-         <width>20</width>
-         <height>40</height>
+         <width>0</width>
+         <height>260</height>
         </size>
        </property>
-      </spacer>
-     </item>
-     <item row="4" column="0" colspan="2" alignment="Qt::AlignVCenter">
-      <widget class="QListWidget" name="list_filesfolders">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
        </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
+       <property name="tabletTracking">
+        <bool>true</bool>
        </property>
        <property name="contextMenuPolicy">
-        <enum>Qt::NoContextMenu</enum>
+        <enum>Qt::DefaultContextMenu</enum>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">height: calc(100% - 16px);
+width: calc(100% - 16px);
+background: white;
+padding: 8px;
+font-size: 12px;</string>
        </property>
-       <property name="horizontalScrollBarPolicy">
-        <enum>Qt::ScrollBarAsNeeded</enum>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOn</enum>
        </property>
        <property name="sizeAdjustPolicy">
         <enum>QAbstractScrollArea::AdjustToContents</enum>
        </property>
-       <property name="showDropIndicator" stdset="0">
-        <bool>false</bool>
-       </property>
       </widget>
      </item>
-     <item row="5" column="1">
+     <item row="3" column="1">
       <widget class="QPushButton" name="organizer_button">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>32</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>10</pointsize>
@@ -157,23 +198,20 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="0">
-      <widget class="QProgressBar" name="progress_bar">
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="accessibleName">
-        <string>progress_bar</string>
-       </property>
-       <property name="value">
-        <number>24</number>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
+     <item row="1" column="1">
       <widget class="QPushButton" name="search_button">
+       <property name="minimumSize">
+        <size>
+         <width>128</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>128</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <pointsize>10</pointsize>
@@ -187,18 +225,20 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="0" colspan="2">
-      <spacer name="verticalSpacer_4">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
+     <item row="3" column="0">
+      <widget class="QProgressBar" name="progress_bar">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
        </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>10</height>
-        </size>
+       <property name="accessibleName">
+        <string>progress_bar</string>
        </property>
-      </spacer>
+       <property name="value">
+        <number>0</number>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
