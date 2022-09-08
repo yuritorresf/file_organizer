@@ -1,4 +1,4 @@
-from PyQt6 import uic, QtWidgets, QtCore, QtGui
+from PyQt5 import uic, QtWidgets, QtCore, QtGui
 import os, sys, time
 from pathlib import Path
 
@@ -88,33 +88,39 @@ class Organizer:
                 if file.split('.')[-1].lower() in self.__type:
                     self.__counter_actions += 1
         
-        dprint+=f"\n{len(os.listdir(self.__folder_loc))} arquivos encontrados.\n"
+        dprint += '\n{} arquivos encontrados.\n'.format(len(os.listdir(self.__folder_loc)))
         self.window.list_filesfolders.setText(dprint)
         self.window.list_filesfolders.verticalScrollBar().setValue(1000)
 
-        dprint+='\nCriando pastas...\n'
+        dprint += '\nCriando pastas...\n'
         self.window.list_filesfolders.setText(dprint)
         self.window.list_filesfolders.verticalScrollBar().setValue(1000)
 
         for file in self.__type:
             if not os.path.exists(os.path.join(self.__folder_loc, file)):
                 os.makedirs(os.path.join(self.__folder_loc, file))
-                dprint+=f"Pasta {file} criada.\n"
+                dprint+='Pasta {} criada.\n'.format(file)
                 self.window.list_filesfolders.setText(dprint)
                 p+=1
 
-        dprint+='\nMovendo arquivos...\n'
+        dprint += '\nMovendo arquivos...\n'
         self.window.list_filesfolders.setText(dprint)
         self.window.list_filesfolders.verticalScrollBar().setValue(1000)
         
         for file in os.listdir(self.__folder_loc):
             if os.path.isfile(os.path.join(self.__folder_loc, file)):
                 if file.split('.')[-1].lower() in self.__type:
-                    os.rename(os.path.join(self.__folder_loc, file), os.path.join(self.__folder_loc, file.split('.')[-1], file))
+                    
+                    # criar condição para renomear arquivos com mesmo nome
+                    if os.path.exists(os.path.join(self.__folder_loc, file.split('.')[-1], file)):
+                        os.rename(os.path.join(self.__folder_loc, file), os.path.join(self.__folder_loc, file.split('.')[-1], file.split('.')[0] + ' - copia' + '.' + file.split('.')[-1]))
+                    else:
+                        os.rename(os.path.join(self.__folder_loc, file), os.path.join(self.__folder_loc, file.split('.')[-1], file))
+                    
                     d+=1
                     data = (d/self.__counter_actions)*100
 
-                    dprint+=f"Arquivo {file} movido.\n"
+                    dprint += 'Arquivo {} movido.\n'.format(file)
                     self.window.list_filesfolders.setText(dprint)
                     self.window.list_filesfolders.verticalScrollBar().setValue(1000)
 
@@ -126,15 +132,15 @@ class Organizer:
         if p == 0:
             fp = 'Todas as pastas já existem'
         elif p == 1:
-            fp = f'{p} pasta foi criada'
+            fp = '{} pasta foi criada'.format(p)
         else:
-            fp = f'{p} pastas foram criadas'
+            fp = '{} pastas foram criadas'.format(p)
         if d == 0:
             fd = 'nenhum arquivo foi movido'
         else:
-            fd = f'{d} arquivos foram movidos'
+            fd = '{} arquivos foram movidos'.format(d)
         
-        dprint+=f'\n{fp} e {fd}.\n\nFeito...\n'
+        dprint += '\n{fp} e {fd}.\n\nFeito...\n'.format(fp=fp, fd=fd)
         self.window.list_filesfolders.setText(dprint)
         self.window.list_filesfolders.verticalScrollBar().setValue(1000)
 
